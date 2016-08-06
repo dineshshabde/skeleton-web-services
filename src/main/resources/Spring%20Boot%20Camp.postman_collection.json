@@ -1,0 +1,99 @@
+{
+	"variables": [],
+	"info": {
+		"name": "Spring Boot Camp",
+		"_postman_id": "360b6013-5151-79b0-5909-65cc28d6b88e",
+		"description": "",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "http://localhost:8080/api/greetings/2",
+			"request": {
+				"url": "http://localhost:8080/api/greetings",
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": []
+				},
+				"description": "Get product based on primary key identifier"
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:8080/api/greetings/2",
+			"request": {
+				"url": "http://localhost:8080/api/greetings/2",
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"id\": 2 ,\"text\":\"BMW\"}"
+				},
+				"description": "Update existing data"
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:8080/api/greetings/",
+			"request": {
+				"url": "http://localhost:8080/api/greetings/",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"text\":\"Amazon\"}"
+				},
+				"description": "Save / Add data"
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:8080/api/greetings",
+			"request": {
+				"url": "http://localhost:8080/api/greetings",
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": []
+				},
+				"description": "Get all data"
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:8080/api/greetings/2",
+			"request": {
+				"url": "http://localhost:8080/api/greetings/2",
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"id\":2}"
+				},
+				"description": "Delete operation"
+			},
+			"response": []
+		}
+	]
+}
