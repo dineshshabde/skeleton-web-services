@@ -1,20 +1,18 @@
 package org.example.ws.model;
 
-import java.math.BigInteger;
-
 public class Greeting {
-	private BigInteger id;
+	private Long id;
 	private String text;
 
 	public Greeting() {
 
 	}
 
-	public BigInteger getId() {
+	public Long getId() {
 		return id;
 	}
 
-	public void setId(BigInteger id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 
