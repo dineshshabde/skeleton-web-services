@@ -29,7 +29,7 @@ public class GreeingBatchBean {
 		logger.info("< cronJob");
 	}
 
-	@Scheduled(initialDelay = 5000, fixedRate = 15000)
+	// @Scheduled(initialDelay = 5000, fixedRate = 15000)
 	public void fixedRateJobWithInitialDelay() {
 		logger.info("> fixedRateJobWithInitialDelay");
 
@@ -45,5 +45,23 @@ public class GreeingBatchBean {
 		logger.info("Processing time was {} seconds.", pause / 1000);
 
 		logger.info("< fixedRateJobWithInitialDelay");
+	}
+
+	@Scheduled(initialDelay = 5000, fixedDelay = 15000)
+	public void fixedDelayJobWithInitialDelay() {
+		logger.info("> fixedDelayJobWithInitialDelay");
+
+		// Add scheduling logic here
+		// Simulate Job processing time
+		long pause = 5000;
+		long start = System.currentTimeMillis();
+		do {
+			if (start + pause < System.currentTimeMillis()) {
+				break;
+			}
+		} while (true);
+		logger.info("Processing time was {} seconds.", pause / 1000);
+
+		logger.info("< fixedDelayJobWithInitialDelay");
 	}
 }
