@@ -18,7 +18,7 @@ public class GreeingBatchBean {
 	@Autowired
 	private GreetingService greetingService;
 
-	@Scheduled(cron = "0,30 * * * * *")
+	// @Scheduled(cron = "0,30 * * * * *")
 	public void cronJob() {
 		logger.info("> cronJob");
 
@@ -27,5 +27,23 @@ public class GreeingBatchBean {
 		logger.info("There are {} greetings in the data store.", greeting.size());
 
 		logger.info("< cronJob");
+	}
+
+	@Scheduled(initialDelay = 5000, fixedRate = 15000)
+	public void fixedRateJobWithInitialDelay() {
+		logger.info("> fixedRateJobWithInitialDelay");
+
+		// Add scheduling logic here
+		// Simulate Job processing time
+		long pause = 5000;
+		long start = System.currentTimeMillis();
+		do {
+			if (start + pause < System.currentTimeMillis()) {
+				break;
+			}
+		} while (true);
+		logger.info("Processing time was {} seconds.", pause / 1000);
+
+		logger.info("< fixedRateJobWithInitialDelay");
 	}
 }
