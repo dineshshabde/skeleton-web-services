@@ -5,6 +5,9 @@ import java.util.Collection;
 import org.example.ws.model.Greeting;
 import org.example.ws.repository.GreetingRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.cache.annotation.CachePut;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
@@ -23,6 +26,7 @@ public class GreetingServiceBean implements GreetingService {
 	}
 
 	@Override
+	@Cacheable(value = "greetings", key = "#id")
 	public Greeting findOne(Long id) {
 		Greeting greeting = greetingRepository.findOne(id);
 		return greeting;
@@ -30,6 +34,7 @@ public class GreetingServiceBean implements GreetingService {
 
 	@Override
 	@Transactional(propagation = Propagation.REQUIRED, readOnly = false)
+	@CachePut(value = "greetings", key = "#result.id")
 	public Greeting create(Greeting greeting) {
 		if (greeting.getId() != null) {
 			// save method of Spring JPA does both update and create.
@@ -47,6 +52,7 @@ public class GreetingServiceBean implements GreetingService {
 
 	@Override
 	@Transactional(propagation = Propagation.REQUIRED, readOnly = false)
+	@CachePut(value = "greetings", key = "#greeting.id")
 	public Greeting update(Greeting greeting) {
 		Greeting savedPersistance = findOne(greeting.getId());
 		if (savedPersistance == null) {
@@ -59,8 +65,15 @@ public class GreetingServiceBean implements GreetingService {
 
 	@Override
 	@Transactional(propagation = Propagation.REQUIRED, readOnly = false)
+	@CacheEvict(value = "greetings", key = "#id")
 	public void delete(Long id) {
 		greetingRepository.delete(id);
+	}
+
+	@Override
+	@CacheEvict(value = "greetings", allEntries = true)
+	public void evictCache() {
+
 	}
 
 }
