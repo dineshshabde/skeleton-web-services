@@ -8,9 +8,9 @@
 	},
 	"item": [
 		{
-			"name": "http://localhost:8080/api/greetings/2",
+			"name": "Get specific data",
 			"request": {
-				"url": "http://localhost:8080/api/greetings",
+				"url": "http://localhost:8080/api/greetings/2",
 				"method": "GET",
 				"header": [],
 				"body": {
@@ -22,7 +22,7 @@
 			"response": []
 		},
 		{
-			"name": "http://localhost:8080/api/greetings/2",
+			"name": "Update specific data",
 			"request": {
 				"url": "http://localhost:8080/api/greetings/2",
 				"method": "PUT",
@@ -42,7 +42,7 @@
 			"response": []
 		},
 		{
-			"name": "http://localhost:8080/api/greetings/",
+			"name": "Add data",
 			"request": {
 				"url": "http://localhost:8080/api/greetings/",
 				"method": "POST",
@@ -62,7 +62,7 @@
 			"response": []
 		},
 		{
-			"name": "http://localhost:8080/api/greetings",
+			"name": "Get all data",
 			"request": {
 				"url": "http://localhost:8080/api/greetings",
 				"method": "GET",
@@ -71,12 +71,12 @@
 					"mode": "formdata",
 					"formdata": []
 				},
-				"description": "Get all data"
+				"description": "Gets all data from Database"
 			},
 			"response": []
 		},
 		{
-			"name": "http://localhost:8080/api/greetings/2",
+			"name": "Delete specific data",
 			"request": {
 				"url": "http://localhost:8080/api/greetings/2",
 				"method": "DELETE",
@@ -92,6 +92,20 @@
 					"raw": "{\"id\":2}"
 				},
 				"description": "Delete operation"
+			},
+			"response": []
+		},
+		{
+			"name": "Asynchronus",
+			"request": {
+				"url": "http://localhost:8080/api/greetings/2/send?wait=true",
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": []
+				},
+				"description": "Asynchronus"
 			},
 			"response": []
 		}
