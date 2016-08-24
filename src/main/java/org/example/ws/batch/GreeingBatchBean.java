@@ -7,9 +7,20 @@ import org.example.ws.service.GreetingService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Profile;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 
+/**
+ * Adding profile as batch even if base configuration is invoked, profile
+ * configuration overrides base since profile configuration is called at last.
+ * 
+ * Sprig looks for application-<profile name>.properties
+ * 
+ * @author dinesh
+ *
+ */
+@Profile("batch")
 @Component
 public class GreeingBatchBean {
 
@@ -18,7 +29,7 @@ public class GreeingBatchBean {
 	@Autowired
 	private GreetingService greetingService;
 
-	// @Scheduled(cron = "0,30 * * * * *")
+	@Scheduled(cron = "${batch.greeting.cron}")
 	public void cronJob() {
 		logger.info("> cronJob");
 
@@ -29,7 +40,7 @@ public class GreeingBatchBean {
 		logger.info("< cronJob");
 	}
 
-	// @Scheduled(initialDelay = 5000, fixedRate = 15000)
+	@Scheduled(initialDelayString = "${batch.greeting.fixeddelay}", fixedRateString = "${batch.greeting.fixedrate}")
 	public void fixedRateJobWithInitialDelay() {
 		logger.info("> fixedRateJobWithInitialDelay");
 
@@ -47,7 +58,7 @@ public class GreeingBatchBean {
 		logger.info("< fixedRateJobWithInitialDelay");
 	}
 
-	@Scheduled(initialDelay = 5000, fixedDelay = 15000)
+	@Scheduled(initialDelayString = "${batch.greeting.initialdelay}", fixedDelayString = "${batch.greeting.fixeddelay}")
 	public void fixedDelayJobWithInitialDelay() {
 		logger.info("> fixedDelayJobWithInitialDelay");
 
