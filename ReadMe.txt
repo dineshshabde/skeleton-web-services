@@ -1,4 +1,4 @@
-skeleton-web-services
+skeleton-web-services https://travis-ci.org/dineshshabde/skeleton-web-services.svg?branch=master
 ---------------------
 
 Source code		:	https://github.com/dineshshabde/skeleton-web-services
